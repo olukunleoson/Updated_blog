@@ -38,3 +38,8 @@ def add_comment(request, pk):
     else:
         form = CommentForm()
     return render(request, 'post.html', {'form': form})
+
+def password_change(request):
+    print('password change successful')
+    return render(request, 'home.html')
+
