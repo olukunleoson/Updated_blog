@@ -6,8 +6,26 @@ from bloghome.forms import CommentForm, Registration_form
 def home(request):
     return render(request, 'home.html')
 
-def post(request):
-     return render(request, 'post.html')
+def human_right(request):
+    return render(request, 'human-right.html')
+
+def anti_corruption(request):
+    return render(request, 'anti_corruption.html')
+
+def forum(request):
+     return render(request, 'forum.html')
+
+def contact(request):
+     return render(request, 'contact-us.html')
+
+def centers(request):
+     return render(request, 'centers.html')
+
+def agent(request):
+     return render(request, 'agent.html')
+
+def technology(request):
+     return render(request, 'technology.html')
 
 def register(request):
     if request.method == "POST":
@@ -24,17 +42,17 @@ def register(request):
     return render(request, 'register.html', {"form": form})
 
 def login(request, user):
-    return render(request, 'post.html')
+    return render(request, 'home.html')
 
 def add_comment(request, pk):
-    comment = get_object_or_404(post, pk=pk)
+    comment = get_object_or_404(forum, pk=pk)
     if request.method == "Post":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save()
             comment.refresh_from_db()
             comment = authenticate(username=comment.username)
-            return redirect('post', pk=post.pk)
+            return redirect('post', pk=forum.pk)
     else:
         form = CommentForm()
     return render(request, 'post.html', {'form': form})
